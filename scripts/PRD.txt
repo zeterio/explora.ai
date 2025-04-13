@@ -1,0 +1,240 @@
+<context>
+# Overview  
+Explora.ai is an AI-powered learning and exploration tool designed to help users go deeper into any topic, uncover dependencies, track what they've learned, and branch out into new areas with intelligent guidance. The goal is to create a chat-first but structured environment for self-guided learning, powered by conversational AI.
+
+Explora.ai helps users explore and master any topic via conversation with AI, automatically tracks key concepts, insights, and learnings in an organized way, provides structured learning paths and branching suggestions based on topic context, and functions as a thinking partner, not just an answer bot.
+
+# Core Features  
+1. AI Chat Engine
+   - What it does: Provides a natural conversation interface with contextual understanding and memory.
+   - Why it's important: Creates an intuitive, human-like learning experience that adapts to user interests.
+   - How it works: Uses advanced AI models to maintain context, remember previous exchanges, and offer options to go "deeper," "broader," or "clarify" on any idea.
+
+2. Learning Tracker
+   - What it does: Automatically extracts key concepts from chat and organizes them.
+   - Why it's important: Helps users retain and structure knowledge gained through conversations.
+   - How it works: Identifies important concepts during chat, allows users to pin/save/edit key takeaways, and organizes learnings into a visual and navigable format.
+
+3. Topic Guide Generator
+   - What it does: Creates structured guides from any query.
+   - Why it's important: Provides clear learning paths with proper structure and progression.
+   - How it works: Analyzes topics to identify knowledge prerequisites, dependencies, and subtopics, organizing them into coherent learning flows.
+
+4. Branching Engine
+   - What it does: Suggests new areas to explore based on current discussion.
+   - Why it's important: Facilitates discovery and prevents learning dead-ends.
+   - How it works: Identifies related concepts, tangents, analogies, and real-world applications, presenting them as exploration options.
+
+5. Interactive Highlighting and Branching
+   - What it does: Allows users to highlight any text in a conversation to branch into a new, focused conversation about that concept.
+   - Why it's important: Enables user-driven, non-linear exploration while maintaining context and connection between related topics.
+   - How it works: Captures highlighted text, spawns a new conversation thread, tracks the connection between threads, and visually indicates branch points upon return to previous threads.
+
+# User Experience  
+User Personas:
+1. Curious Explorer: Wants to learn something new (e.g., "Tell me about quantum computing").
+2. Deep Diver: Already familiar with a topic and wants deeper knowledge or edge cases.
+3. Creative Thinker: Wants to branch out into unexpected connections or brainstorm ideas.
+4. Student/Self-Learner: Wants a structured, AI-guided learning journey.
+
+Key User Flows:
+1. Topic Exploration: User asks about a topic → Explora provides core ideas, subtopics, and paths forward.
+2. Learning Journal: Tracks what the user has learned in a structured, editable timeline.
+3. Concept Mapping: Visual representation of topics, links between ideas, and dependencies.
+4. Branching Recommendations: Suggests adjacent ideas or deeper questions to explore.
+5. AI-Aided Research: Allows users to dive into topics with layered insights (definitions → context → implications).
+6. Guides & Mini-Courses: Explora can build a learning guide or micro-course on any topic.
+7. User-Driven Branching:
+   - User highlights text in the current conversation
+   - User initiates a new conversation branch focused on the highlighted concept
+   - System creates a new conversation thread while maintaining a link to the origin
+   - When user returns to the original conversation, the branching point is visually highlighted
+   - The system records this branch in the user's learning graph
+   - AI recognizes and incorporates these user-initiated branches in future recommendations and summaries
+8. Contextual Return:
+   - When returning to a previous conversation thread after branching
+   - The system provides a brief summary of what was explored in the branch
+   - The original context is preserved but enhanced with insights from the branch
+9. Learning Path Visualization:
+   - User can view their journey through topics as an interactive graph
+   - Each branch point represents a decision to explore a specific concept deeper
+   - The system provides insights on learning patterns and coverage
+
+UI/UX Considerations:
+- Clean, distraction-free interface that emphasizes the conversation.
+- Visual organization of tracked concepts and learning paths.
+- Intuitive navigation between conversation, saved insights, and topic maps.
+- Easy-to-use controls for directing the learning journey (deepen, broaden, clarify).
+- Text highlighting functionality with visual indicators for branch points.
+- Breadcrumb navigation to track path through branched conversations.
+- Visual cues that show relationships between linked conversation threads.
+- Seamless transitions between related conversations with preserved context.
+</context>
+<PRD>
+# Technical Architecture  
+## System Components
+1. Frontend Application
+   - React-based web application with responsive design
+   - NextJS for server-side rendering and routing
+   - Tailwind CSS for styling
+   - Component library for consistent UI elements
+
+2. Backend Services
+   - Node.js API server 
+   - WebSocket support for real-time conversations
+   - Authentication and user management
+   - Conversation history storage and retrieval
+
+3. AI Integration Layer
+   - Integration with OpenAI API for core conversation functionality
+   - Custom prompt engineering for learning-specific interactions
+   - Context management system to maintain conversation state
+
+4. Knowledge Graph System
+   - System to extract and organize concepts from conversations
+   - Relationship mapping between concepts
+   - Visualization components for concept maps
+
+## Data Models
+1. User
+   - Profile information
+   - Authentication details
+   - Preferences and settings
+
+2. Conversation
+   - Chat history
+   - Timestamps
+   - Associated topics and concepts
+
+3. Learning Items
+   - Extracted concepts
+   - User-saved insights
+   - Relationships to other concepts
+   - Metadata (source conversation, timestamp, etc.)
+
+4. Topic Guides
+   - Structured learning paths
+   - Prerequisites and dependencies
+   - Progression tracking
+
+## APIs and Integrations
+1. Claude API for conversation intelligence
+2. Authentication services (OAuth, email)
+3. Optional integrations with learning resources (Wikipedia, academic databases)
+4. Export capabilities to note-taking tools
+
+## Infrastructure Requirements
+1. Cloud hosting (AWS/GCP/Azure)
+2. Database system for structured data (PostgreSQL)
+3. Vector database for semantic search (Pinecone/Weaviate)
+4. Caching layer for performance optimization
+5. CDN for static assets
+
+# Development Roadmap  
+## Phase 1: MVP - Core Conversation and Learning Tracking
+- Basic chat interface with AI-powered responses
+- Session-based conversation memory
+- Simple concept extraction and highlighting
+- User accounts and authentication
+- Basic user profile and history
+- Mobile-responsive design
+
+## Phase 2: Enhanced Learning Tools
+- Advanced concept extraction and organization
+- Visual concept mapping (basic version)
+- Topic guide generation
+- Learning history with filtering and search
+- Improved conversation controls (deeper, broader, clarify)
+- User customization of saved concepts
+
+## Phase 3: Advanced Features and Intelligence
+- Sophisticated branching engine with personalized recommendations
+- Advanced visualization of concept relationships
+- Customizable learning paths
+- Content export and sharing capabilities
+- Integration with external learning resources
+- Advanced user preferences and learning styles adaptation
+
+## Phase 4: Platform Expansion
+- Community features (optional sharing of learning paths)
+- Specialized topic domains with enhanced capabilities
+- API for third-party extensions
+- Mobile applications
+- Advanced analytics and learning insights
+
+# Logical Dependency Chain
+## Foundation (Must build first)
+1. User authentication and account management
+2. Basic chat interface with AI integration
+3. Conversation history storage
+4. Simple concept extraction from conversations
+
+## Core Experience (Getting to a usable frontend)
+1. Enhanced chat UI with conversation controls
+2. Basic learning tracker with concept organization
+3. User profile with learning history
+4. Mobile responsiveness and basic UI refinements
+
+## Feature Expansion (Atomic but buildable features)
+1. Topic guide generator
+   - Dependency analysis
+   - Learning path visualization
+2. Concept mapping system
+   - Relationship detection
+   - Interactive visualization
+3. Branching engine
+   - Related concept identification
+   - Suggestion interface
+
+## Advanced Capabilities
+1. Personalization systems
+2. Export and integration features
+3. Advanced visualizations
+4. Community features (if planned)
+
+# Risks and Mitigations  
+## Technical Challenges
+1. **AI Context Management**
+   - Risk: Limited context window in AI models
+   - Mitigation: Implement efficient context summarization and management
+
+2. **Concept Extraction Accuracy**
+   - Risk: Incorrect or irrelevant concept identification
+   - Mitigation: Implement user feedback loops and continuous improvement
+
+3. **Scalability of Personalization**
+   - Risk: Performance issues with growing user base
+   - Mitigation: Efficient caching and computational strategies
+
+## MVP Scoping
+1. **Feature Creep**
+   - Risk: Adding too many features before core experience is solid
+   - Mitigation: Strictly prioritize based on user value and technical dependencies
+
+2. **User Adoption Without Full Feature Set**
+   - Risk: Early users might not see full potential
+   - Mitigation: Focus on polishing core conversation experience first
+
+## Resource Constraints
+1. **AI API Costs**
+   - Risk: High operational costs with chat-based system
+   - Mitigation: Implement efficient token usage, caching, and tiered user plans
+
+2. **Development Complexity**
+   - Risk: Complex features requiring specialized skills
+   - Mitigation: Modular architecture allowing incremental implementation
+
+# Appendix  
+## Research Findings
+- Conversation-based learning shown to increase engagement and knowledge retention
+- Visual concept mapping significantly improves comprehension of complex topics
+- Guided discovery learning more effective than purely self-directed or rigidly structured approaches
+
+## Technical Specifications
+- Frontend: Next.js, React, TypeScript, Tailwind CSS
+- Backend: Node.js, Express
+- Database: PostgreSQL, Redis for caching
+- AI: Claude API, custom prompt engineering
+- Authentication: JWT, OAuth
+- Visualization: D3.js or similar for concept mapping
+</PRD> 
