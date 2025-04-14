@@ -1,0 +1,25 @@
+# <type>(<scope>): <short summary>
+# |       |             |
+# |       |             +-> Summary in present tense (not capitalized, no period)
+# |       |
+# |       +-> Scope: component, file, or feature affected
+# |
+# +-> Type: feat, fix, docs, style, refactor, test, chore
+#
+# Examples:
+# feat(auth): add login form component
+# fix(chat): resolve message ordering issue
+# docs(readme): update installation instructions
+# style(button): improve hover state appearance
+# refactor(utils): simplify date formatting function
+# test(api): add integration tests for user endpoints
+# chore(deps): update dependency versions
+#
+# Optional longer description
+# |
+# +-> Provide context about what and why (not how)
+#
+# Optional footer
+# |
+# +-> Reference issues: "Fixes #123", "Closes #456"
+# +-> Breaking changes: "BREAKING CHANGE: description" 

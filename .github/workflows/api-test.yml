@@ -1,0 +1,49 @@
+name: API Tests
+
+on:
+  push:
+    branches: [ main, development ]
+    paths:
+      - 'src/app/api/**'
+      - 'src/lib/**'
+  pull_request:
+    branches: [ main, development ]
+    paths:
+      - 'src/app/api/**'
+      - 'src/lib/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run API health check
+        run: |
+          npm run build
+          npm run start &
+          sleep 10
+          curl -f http://localhost:3000/api/health || exit 1
+
+      - name: Run API route validation
+        run: |
+          for file in src/app/api/*/route.ts; do
+            if [ -f "$file" ]; then
+              echo "Validating API route: $file"
+              # Check if the file exports required HTTP methods
+              grep -E "export (async )?function (GET|POST|PUT|DELETE|PATCH|OPTIONS)" "$file" || {
+                echo "Error: $file is missing required HTTP method exports"
+                exit 1
+              }
+            fi
+          done 

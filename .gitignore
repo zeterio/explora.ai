@@ -60,4 +60,10 @@ node_modules/
 # OS specific
 # Task files
 tasks.json
-tasks/ 
+tasks/
+
+# dotenv environment variables file
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local 

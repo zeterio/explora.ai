@@ -7,21 +7,38 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky",
     "task-init": "node node_modules/task-master-ai/bin/task-master.js init",
     "list": "node scripts/dev.js list",
     "generate": "node scripts/dev.js generate",
-    "parse-prd": "node scripts/dev.js parse-prd"
+    "parse-prd": "node scripts/dev.js parse-prd",
+    "ci": "npm run format:check && npm run lint && npm run typecheck && npm run build",
+    "deploy": "vercel --prod",
+    "setup-supabase": "node scripts/setup-supabase.js",
+    "test-api": "node scripts/test-api.js",
+    "test-auth": "node scripts/test-auth.js",
+    "test-db": "node scripts/test-db.js"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
-    "next": "15.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "task-master-ai": "^0.11.1",
     "@anthropic-ai/sdk": "^0.39.0",
+    "@supabase/supabase-js": "^2.0.0",
+    "bcryptjs": "^3.0.2",
     "boxen": "^8.0.1",
     "chalk": "^4.1.2",
-    "commander": "^11.1.0",
     "cli-table3": "^0.6.5",
+    "commander": "^11.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.21.2",
@@ -33,19 +50,34 @@
     "inquirer": "^12.5.0",
     "jsonwebtoken": "^9.0.2",
     "lru-cache": "^10.2.0",
+    "next": "15.3.0",
+    "next-auth": "^4.24.11",
+    "node-fetch": "^3.3.2",
+    "node-fetch-cookies": "^2.1.1",
     "openai": "^4.89.0",
-    "ora": "^8.2.0"
+    "ora": "^8.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "task-master-ai": "^0.11.1",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vercel": "^41.6.0"
   },
   "type": "module"
 }
