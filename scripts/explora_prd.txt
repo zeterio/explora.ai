@@ -1,0 +1,326 @@
+<context>
+# Overview  
+Explora.ai is an AI-powered conversational learning tool that helps users go deeper into any topic, track key insights, assess their own understanding, and explore adjacent ideas through branching. This MVP focuses on a tightly scoped core experience that delivers value through structured dialogue and lightweight learning tools.
+
+Explora is designed to dig into your question properly, surface what's missing in your understanding, and work with you to refine your thinking — not just throw a bunch of concepts at you.
+
+# Core Features  
+1. **Conversational AI**
+   - What it does: Enables users to explore and understand topics through a structured chat interface
+   - Why it's important: Provides clear, layered explanations with intelligent follow-ups based on user's level of clarity
+   - How it works: GPT-based chat interface delivers structured explanations with follow-up prompts
+
+2. **Pin to My Learnings**
+   - What it does: Allows users to save key insights during conversations
+   - Why it's important: Creates a repository of important information for later review
+   - How it works: User pins a message during chat; it's saved in a dedicated "My Learnings" panel
+
+3. **Self-Assessment Tags**
+   - What it does: Enables users to mark concepts as "Got it" or "Still shaky"
+   - Why it's important: Helps track understanding and identify areas needing more review
+   - How it works: User tags any pinned item with confidence level for personalized learning paths
+
+4. **Highlight + Branching**
+   - What it does: Allows users to highlight any part of the chat to create a new branch or sub-thread
+   - Why it's important: Enables deeper exploration of specific concepts without losing context
+   - How it works: User highlights a phrase and chooses from contextual prompts to open a new thread
+
+5. **Diagnostic Challenges**
+   - What it does: Tests user understanding and reinforces knowledge
+   - Why it's important: Applies retrieval practice principles to strengthen learning
+   - How it works: AI offers targeted questions after key insights or when concepts are tagged as "Still shaky"
+
+6. **Guide Generator**
+   - What it does: Automatically generates a lightweight guide from saved insights
+   - Why it's important: Consolidates learning into a structured format for review
+   - How it works: Pinned insights are compiled into a Markdown-formatted guide
+
+7. **Export to Markdown**
+   - What it does: Allows users to export their learnings
+   - Why it's important: Enables integration with other note-taking or knowledge management systems
+   - How it works: User downloads pinned content as a file with tags and timestamps
+
+# User Experience  
+## User Personas
+1. **Curious Explorer** – Wants to learn something new  
+2. **Deep Diver** – Wants to understand nuances and edge cases  
+3. **Self-Learner** – Uses the tool as a supplement to study or work  
+4. **Reflection-Oriented Learner** – Uses confidence markers to guide review
+
+## Key User Flows
+1. **Topic Exploration Flow**
+   - User submits a question about a topic
+   - Explora provides structured, layered answers
+   - User engages with follow-up prompts for deeper understanding
+
+2. **Learning Management Flow**
+   - User pins useful responses to "My Learnings"
+   - User tags saved ideas as "Got it" or "Still shaky"
+   - System tracks learning progress across topics
+
+3. **Branching Exploration Flow**
+   - User highlights any message snippet
+   - System offers context-aware branching options
+   - User selects option to start a new thread exploring that concept
+
+4. **Knowledge Consolidation Flow**
+   - System generates a lightweight guide from pinned insights
+   - User reviews and refines the guide
+   - User exports their guide/notes to Markdown
+
+## UI/UX Considerations
+- Chat-first interface prioritizing clear communication
+- "My Learnings" panel with pinned insights and tags
+- Visual indicators for "Got it" / "Still shaky" tagging
+- Highlight-to-branch popup with smart prompts
+- Clean, distraction-free reading environment
+- Intuitive export options
+- Auto-generated Guide view with clear organization
+</context>
+<PRD>
+# Technical Architecture  
+## System Components
+- **Frontend Application**
+  - React-based web application with responsive design
+  - Chat interface with message threading capabilities
+  - Pinning and tagging UI components
+  - Highlight selection and branching functionality
+  - Guide generation and export features
+
+- **Backend Services**
+  - API layer for handling client requests
+  - Integration with LLM provider (e.g., OpenAI GPT)
+  - Authentication and user management
+  - Chat history and learning data persistence
+
+- **AI Components**
+  - LLM prompt engineering for structured learning responses
+  - Context management for maintaining thread coherence
+  - Branch generation from highlighted text
+  - Guide compilation from pinned insights
+
+## Data Models
+- **User Model**
+  - Authentication information
+  - Preferences and settings
+
+- **Conversation Model**
+  - Thread structure (main threads and branches)
+  - Messages with metadata (timestamps, authorship)
+  - Relationship between main threads and branches
+
+- **Learning Model**
+  - Pinned insights with reference to source messages
+  - Self-assessment tags and metadata
+  - Generated guides with version history
+
+## APIs and Integrations
+- **External APIs**
+  - OpenAI API for GPT model access
+  - Authentication provider (e.g., Auth0)
+  - Analytics service integration
+
+- **Internal APIs**
+  - Chat management endpoints
+  - Learning data management endpoints
+  - Guide generation and export endpoints
+
+## Infrastructure Requirements
+- **Hosting**
+  - Frontend hosting on CDN
+  - Backend services on scalable cloud infrastructure
+  - Database for user data and conversations
+
+- **Databases**
+  - Document store for conversation data
+  - Relational database for user accounts and relationships
+  - Cache layer for performance optimization
+
+- **Security**
+  - End-to-end encryption for sensitive data
+  - Authentication and authorization mechanisms
+  - GDPR and privacy compliance measures
+
+# Development Roadmap  
+## MVP Requirements
+1. **Core Chat Functionality**
+   - Basic chat interface with AI responses
+   - Structured message formatting
+   - Contextual follow-up suggestions
+
+2. **Learning Management Features**
+   - Message pinning functionality
+   - "My Learnings" panel implementation
+   - Self-assessment tagging system
+
+3. **Text Highlighting and Branching**
+   - Text selection mechanism
+   - Branch creation from highlights
+   - Thread navigation between main and branch conversations
+
+4. **Guide Generation and Export**
+   - Automatic compilation of pinned insights
+   - Basic formatting and organization
+   - Markdown export functionality
+
+5. **Diagnostic Challenge Integration**
+   - Context-aware question generation
+   - Response handling for diagnostic questions
+   - Integration with pinned content and tags
+
+## Future Enhancements
+1. **Advanced Personalization**
+   - Learning style detection and adaptation
+   - Personalized difficulty scaling
+   - Progress tracking across topics
+
+2. **Visual Knowledge Mapping**
+   - Interactive concept maps of learned topics
+   - Visual relationships between branches
+   - Exploration suggestion based on knowledge gaps
+
+3. **Collaboration Features**
+   - Shared conversations and insights
+   - Collaborative learning paths
+   - Group challenges and discussions
+
+4. **Integration Ecosystem**
+   - API for third-party applications
+   - Plugins for common note-taking applications
+   - Mobile application for on-the-go learning
+
+5. **Advanced Learning Analytics**
+   - Detailed understanding assessments
+   - Learning pattern recognition
+   - Personalized study recommendations
+
+# Logical Dependency Chain
+## Foundation Layer (Must Be Built First)
+1. **User Authentication System**
+   - Basic account creation and login
+   - Session management
+   - User preferences storage
+
+2. **Chat Interface with AI Integration**
+   - Core messaging functionality
+   - LLM integration for responses
+   - Context management for conversations
+
+3. **Data Persistence Layer**
+   - Conversation storage and retrieval
+   - User data management
+   - Real-time updates and synchronization
+
+## Functional Layer (Core User Experience)
+4. **Message Pinning and Learning Panel**
+   - Pin/save functionality for messages
+   - Learning panel UI implementation
+   - Data synchronization between chat and panel
+
+5. **Self-Assessment Tagging System**
+   - Tag creation and management
+   - Visual indicators for different tags
+   - Tag data persistence and retrieval
+
+6. **Text Highlighting and Branching**
+   - Text selection mechanism
+   - Branch creation from highlights
+   - Thread navigation and context retention
+
+## Value-Add Layer (Completing the Experience)
+7. **Diagnostic Challenges**
+   - Challenge generation based on context
+   - Response handling and feedback
+   - Integration with learning tags and progress
+
+8. **Guide Generation**
+   - Algorithm for organizing pinned insights
+   - Guide formatting and presentation
+   - Versioning and updating mechanisms
+
+9. **Export Functionality**
+   - Markdown conversion of guides and insights
+   - Export file generation and delivery
+   - Format options and customization
+
+# Risks and Mitigations  
+## Technical Challenges
+1. **LLM Response Quality and Consistency**
+   - **Risk**: Responses may lack structure or educational quality
+   - **Mitigation**: Develop robust prompt engineering, implement quality control mechanisms, and create fallback options for poor responses
+
+2. **Context Management Across Branches**
+   - **Risk**: Loss of context when navigating between main thread and branches
+   - **Mitigation**: Implement effective context window management and clear visual indicators for thread relationships
+
+3. **Text Selection and Highlighting Precision**
+   - **Risk**: Difficulty in accurately selecting and processing highlighted text
+   - **Mitigation**: Test across browsers and devices, implement normalized selection handling, offer refinement options
+
+## MVP Scope Management
+1. **Feature Creep**
+   - **Risk**: Adding complexity beyond core learning value
+   - **Mitigation**: Strict prioritization based on learning principles, regular user testing to validate feature value
+
+2. **Over-engineering Learning Components**
+   - **Risk**: Building complex systems before validating basic approach
+   - **Mitigation**: Start with lightweight implementations of tags and pins, then iterate based on user feedback
+
+3. **UI Complexity**
+   - **Risk**: Interface becomes cluttered with learning tools
+   - **Mitigation**: Focus on chat-first design, progressive disclosure of features, and consistent UI patterns
+
+## Resource Constraints
+1. **LLM Cost Management**
+   - **Risk**: High operational costs for AI model usage
+   - **Mitigation**: Implement efficient prompt design, token optimization, and caching strategies for common questions
+
+2. **Development Resources**
+   - **Risk**: Limited engineering resources for complex features
+   - **Mitigation**: Modular architecture allowing independent development of components, prioritize core user flows
+
+3. **Performance Optimization**
+   - **Risk**: Slow response times affecting user experience
+   - **Mitigation**: Implement efficient data loading patterns, optimize frontend rendering, use appropriate caching
+
+# Appendix  
+## Learning Principles Research
+- **Scaffolded Construction**: Breaking ideas into logical, structured chunks
+- **Socratic Dialogue**: Encouraging reflection and prompting deeper thought
+- **Retrieval Practice**: Offering diagnostic challenges to reinforce knowledge
+- **Metacognition**: Enabling users to tag their understanding for self-monitoring
+- **Branching Exploration**: Allowing users to follow curiosity to connected ideas
+
+## Example User Flow: Structured Exploration Process
+**User Question**: "What causes inflation to rise in an economy?"
+
+1. **AI Response**  
+   Structured breakdown: types of inflation, causes, consequences. Ends with:  
+   "Want an example using the 1970s oil shock?"  
+   "Would you like to test your understanding?"
+
+2. **User Pins Insight**  
+   Saves explanation about central banks.
+
+3. **User Self-Assesses**  
+   Tags the insight as "Still shaky."
+
+4. **AI Offers Diagnostic Challenge**  
+   "If interest rates rise, what's the expected inflation outcome and why?"
+
+5. **User Highlights Phrase**  
+   Highlights "demand-pull inflation" → AI opens new thread with example and contrast.
+
+6. **User Generates Guide**  
+   Compiles pinned insights into Markdown:  
+   *Title: Drivers of Inflation*  
+   *Includes tags, dates, and links to original chats*
+
+## Technical Specifications
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Backend**: Node.js with Express or Next.js API routes
+- **Database**: MongoDB for conversations, PostgreSQL for user data
+- **AI Integration**: OpenAI API with GPT-4 or equivalent model
+- **Authentication**: Auth0 or similar identity service
+- **Deployment**: Vercel/Netlify for frontend, AWS/GCP for backend services
+</PRD> 
